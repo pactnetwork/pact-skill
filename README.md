@@ -1,43 +1,59 @@
-# pact-monitor skill
+# pact-network — Claude Code skill
 
-Claude Code skill for integrating the `@pact-network/monitor` SDK into your project.
+Integrate the Pact Network SDKs for AI agents on Solana.
 
-Pact Network is parametric micro-insurance for AI agent API payments on Solana. This skill helps your AI coding agent wrap `fetch()` calls with reliability monitoring, configure backend sync, and integrate with the Pact Network scorecard.
+Pact Network is parametric micro-insurance for AI agent API payments on
+Solana. It monitors API provider reliability, computes actuarially-derived
+insurance rates, and pays USDC refunds on failed calls.
+
+## Sub-skills
+
+This skill is split into four focused workflows. Claude Code auto-discovers
+them when this directory lives at `.claude/skills/pact-network/`.
+
+| Sub-skill | Purpose |
+|---|---|
+| `pact-network-guide` | Overview, decision tree (which SDK), golden rule, troubleshooting |
+| `pact-monitor` | `@pact-network/monitor` — wrap `fetch()`, sync signed batches, events |
+| `pact-insurance` | `@pact-network/insurance` — on-chain policy, estimate, claims |
+| `pact-integration` | Wire both SDKs together + Anthropic / Fastify / Express / Next.js patterns |
 
 ## Install
 
-```bash
-npx skills add solder-build/pact-skill
+Clone or copy this directory into your project:
+
+```
+.claude/skills/pact-network/
+├── pact-network-guide/SKILL.md
+├── pact-monitor/SKILL.md
+├── pact-insurance/SKILL.md
+└── pact-integration/SKILL.md
 ```
 
-Or manually copy `SKILL.md` to your project's `.claude/commands/` directory.
-
-## What It Does
-
-When invoked, the skill guides your agent through:
-
-1. Installing `@pact-network/monitor`
-2. Initializing the monitor with your config
-3. Replacing `fetch()` calls with `monitor.fetch()`
-4. Setting up graceful shutdown
-5. Configuring payment header extraction (x402/MPP)
-6. Reading local reliability stats
-
-## Usage
-
-In Claude Code, invoke with:
+Claude Code picks them up at session start. In-session, invoke by name:
 
 ```
 /pact-monitor
+/pact-insurance
+/pact-integration
+/pact-network-guide
 ```
 
-The skill knows the full SDK API surface -- config options, classification logic, payment extraction, sync behavior, and common integration patterns for AI agent frameworks, Express/Fastify, and Next.js.
+Or just describe what you want and Claude will pick the right one.
+
+## Source of Truth
+
+The canonical copy lives in the `pact-monitor` monorepo at
+`.claude/skills/pact-network/` — a sync workflow mirrors it to
+`solder-build/pact-skill` on each release. Edit in the monorepo, not here.
 
 ## Links
 
-- [Pact Network Scorecard](https://pactnetwork.io)
-- [SDK Source](https://github.com/solder-build/pact-monitor/tree/main/packages/sdk)
-- [API Documentation](https://github.com/solder-build/pact-monitor)
+- [Scorecard](https://pactnetwork.io)
+- [Monorepo](https://github.com/solder-build/pact-monitor)
+- [Monitor SDK](https://github.com/solder-build/pact-monitor/tree/main/packages/monitor)
+- [Insurance SDK](https://github.com/solder-build/pact-monitor/tree/main/packages/insurance)
+- [Samples](https://github.com/solder-build/pact-monitor/tree/main/samples)
 
 ## License
 
