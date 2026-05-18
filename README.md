@@ -17,6 +17,8 @@ them when this directory lives at `.claude/skills/pact-network/`.
 | `pact-monitor` | `@q3labs/pact-monitor` — wrap `fetch()`, sync signed batches, events |
 | `pact-insurance` | `@q3labs/pact-insurance` — on-chain policy, estimate, claims |
 | `pact-integration` | Wire both SDKs together + Anthropic / Fastify / Express / Next.js patterns |
+| `pact-pay` | Route `pay` / pay.sh 402 / x402 / MPP calls through Pact Network for money-back coverage |
+| `pact` | Top-level `pact` CLI — insured gateway calls, `pact pay` coverage, allowance, balance, status |
 
 ## Install
 
